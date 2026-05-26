@@ -171,3 +171,32 @@ model-viewer{width:100%;height:100%;--poster-color:transparent;background:transp
 .btn:disabled{opacity:.4;cursor:not-allowed;}
 .sep{width:1px;height:26px;background:var(--line);}
 .hint{margin-left:auto;color:var(--muted);font-size:13px;}
+
+/* ===== モード切替ナビ（2D図面 / CAD） ===== */
+.modenav{display:flex;align-items:center;gap:10px;padding:10px 26px;background:#0f1320;border-bottom:1px solid var(--line);flex-wrap:wrap;}
+.mode{font-size:13px;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:6px 14px;transition:.15s;}
+.mode:hover{color:var(--text);border-color:var(--navy-2);}
+.mode.active{color:#06121a;background:var(--accent);border-color:var(--accent);font-weight:700;}
+.modehint{margin-left:6px;color:var(--muted);font-size:12px;}
+/* CADサンプルチップのアイコン */
+.cad-ic{width:54px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:6px;background:#10131d;color:var(--accent);font-size:20px;border:1px solid var(--line);}
+/* ===== CAD: 抽出データ＆判定パネル ===== */
+.data-wrap{flex:1;overflow-y:auto;padding:16px 18px;min-height:0;}
+.data-empty{color:var(--muted);font-size:13px;line-height:1.7;}
+.d-sec{margin-bottom:18px;}
+.d-sec h4{font-size:13px;margin:0 0 8px;color:var(--text);border-bottom:1px solid var(--line);padding-bottom:6px;}
+.d-sec h4 .src{color:var(--muted);font-size:11px;font-weight:400;}
+.mtable{width:100%;border-collapse:collapse;font-size:12.5px;}
+.mtable th{text-align:left;color:var(--muted);font-weight:600;padding:5px 8px;width:44%;vertical-align:top;}
+.mtable td{padding:5px 8px;color:var(--text);}
+.mtable tr:nth-child(odd){background:#10131d;}
+.jgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.jcard{background:#10131d;border:1px solid var(--line);border-radius:8px;padding:9px 11px;}
+.jcard.wide{grid-column:1 / -1;}
+.jk{font-size:11px;color:var(--muted);margin-bottom:3px;}
+.jv{font-size:13px;color:var(--text);line-height:1.5;}
+.jv.big{font-size:22px;font-weight:700;color:var(--accent);}
+.jv.sm{font-size:12px;}
+.jv.flags{display:flex;flex-wrap:wrap;gap:6px;}
+.flag{background:rgba(255,61,139,.14);border:1px solid var(--pink);color:#ffd0e2;border-radius:5px;padding:2px 8px;font-size:11px;}
+.disc{color:var(--muted);font-size:11px;margin-top:10px;}

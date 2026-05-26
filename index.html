@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>図面解析 × 3D生成　デモアプリケーション</title>
   <link rel="icon" href="assets/favicon.ico" />
-  <link rel="stylesheet" href="styles.css?v=21" />
+  <link rel="stylesheet" href="styles.css?v=22" />
   <script type="module" src="vendor/model-viewer.min.js"></script>
 </head>
 <body>
@@ -19,6 +19,13 @@
       <img class="brand-logo" src="assets/logo_white.png" alt="LiberCraft" />
     </div>
   </header>
+
+  <!-- モード切替（2D図面解析 / CAD解析） -->
+  <nav class="modenav">
+    <a class="mode active" href="index.html">2D図面（PDF）解析</a>
+    <a class="mode" href="cad.html">CAD解析</a>
+    <span class="modehint">紙・PDFの2D図面をAIが読み取り、寸法・公差を抽出して3D化します</span>
+  </nav>
 
   <!-- サンプル選択 -->
   <nav class="samples" id="sampleNav"></nav>
@@ -73,7 +80,7 @@
     <span class="hint" id="hint">「②3Dモデルを生成」または「📐寸法を抽出」を試せます</span>
   </footer>
 
-  <script src="annotations.js?v=21"></script>
-  <script src="app.js?v=21"></script>
+  <script src="annotations.js?v=22"></script>
+  <script src="app.js?v=22"></script>
 </body>
 </html>

@@ -1,0 +1,180 @@
+[
+ {
+  "id": "cad_01_bracket",
+  "name": "取付ブラケット",
+  "material": "AL6061-T6",
+  "note": "切削（角物）",
+  "metrics": {
+   "bbox_mm": [
+    120.0,
+    80.0,
+    24.0
+   ],
+   "volume_cm3": 110.7,
+   "surface_area_cm2": 276.1,
+   "mass_g": 299.0,
+   "density_g_cm3": 2.7,
+   "material_price_yen_kg": 800,
+   "faces": 27,
+   "edges": 72,
+   "solids": 1,
+   "hole_or_cyl_diameters_mm": [
+    9.0,
+    16.0,
+    22.0,
+    35.0,
+    40.0
+   ],
+   "min_diameter_mm": 9.0,
+   "face_kinds": {
+    "平面": 14,
+    "円筒": 13
+   }
+  },
+  "judgment": {
+   "process": "3軸CNC切削",
+   "manufacturability": "標準的な3軸CNC切削加工で問題なく製造可能です。",
+   "risk_flags": [
+    "目立った懸念なし"
+   ],
+   "estimate_yen": 28000,
+   "estimate_breakdown": "材料費(約0.7kgのAL6061材)と、プログラム・段取り・機械加工時間(合計約3.5時間)を基に算出しています。",
+   "lead_time_days": 8,
+   "comment": "材質・形状ともに標準的で、切削加工における特筆すべき課題は見当たらない部品です。"
+  },
+  "glb": "assets/cad/cad_01_bracket.glb",
+  "step": "assets/cad/cad_01_bracket.step"
+ },
+ {
+  "id": "cad_02_flange",
+  "name": "フランジ",
+  "material": "S45C",
+  "note": "旋盤＋穴あけ（回転体）",
+  "metrics": {
+   "bbox_mm": [
+    150.0,
+    150.0,
+    39.0
+   ],
+   "volume_cm3": 288.5,
+   "surface_area_cm2": 521.8,
+   "mass_g": 2264.8,
+   "density_g_cm3": 7.85,
+   "material_price_yen_kg": 200,
+   "faces": 12,
+   "edges": 27,
+   "solids": 1,
+   "hole_or_cyl_diameters_mm": [
+    11.0,
+    50.0,
+    80.0,
+    150.0
+   ],
+   "min_diameter_mm": 11.0,
+   "face_kinds": {
+    "円筒": 9,
+    "平面": 3
+   }
+  },
+  "judgment": {
+   "process": "旋盤 + マシニングセンタ",
+   "manufacturability": "標準的な旋盤およびマシニングセンタで問題なく製造可能です。",
+   "risk_flags": [
+    "目立った懸念なし"
+   ],
+   "estimate_yen": 28500,
+   "estimate_breakdown": "材料費（約2.3kgのS45C丸棒）に、旋盤およびマシニングセンタでの段取り・加工費（約3時間分）を加算して算出しています。",
+   "lead_time_days": 7,
+   "comment": "S45Cの典型的なフランジ形状であり、寸法精度や面粗度の要求が標準的であれば安定した品質で製作可能です。"
+  },
+  "glb": "assets/cad/cad_02_flange.glb",
+  "step": "assets/cad/cad_02_flange.step"
+ },
+ {
+  "id": "cad_03_l_bracket",
+  "name": "Lアングルブラケット",
+  "material": "SS400",
+  "note": "板金/溶接または切削",
+  "metrics": {
+   "bbox_mm": [
+    80.0,
+    60.0,
+    64.0
+   ],
+   "volume_cm3": 73.2,
+   "surface_area_cm2": 218.9,
+   "mass_g": 574.8,
+   "density_g_cm3": 7.85,
+   "material_price_yen_kg": 150,
+   "faces": 10,
+   "edges": 24,
+   "solids": 1,
+   "hole_or_cyl_diameters_mm": [
+    9.0
+   ],
+   "min_diameter_mm": 9.0,
+   "face_kinds": {
+    "平面": 8,
+    "円筒": 2
+   }
+  },
+  "judgment": {
+   "process": "3軸CNC切削",
+   "manufacturability": "標準的な3軸CNC切削加工機で問題なく製造可能です。",
+   "risk_flags": [
+    "φ9穴の深さによっては深穴加工となる可能性"
+   ],
+   "estimate_yen": 22000,
+   "estimate_breakdown": "材料費は外接直方体サイズのSS400鋼材から算出し、加工費は単品試作を想定したプログラム・段取り・切削時間を含んでいます。",
+   "lead_time_days": 7,
+   "comment": "材質・形状ともに一般的で、特殊な工具や工程を必要としない標準的な切削加工品です。"
+  },
+  "glb": "assets/cad/cad_03_l_bracket.glb",
+  "step": "assets/cad/cad_03_l_bracket.step"
+ },
+ {
+  "id": "cad_04_bushing",
+  "name": "ブッシュ",
+  "material": "C3604（快削黄銅）",
+  "note": "旋盤（回転体）",
+  "metrics": {
+   "bbox_mm": [
+    40.0,
+    40.0,
+    50.0
+   ],
+   "volume_cm3": 36.0,
+   "surface_area_cm2": 105.7,
+   "mass_g": 306.3,
+   "density_g_cm3": 8.5,
+   "material_price_yen_kg": 1500,
+   "faces": 8,
+   "edges": 13,
+   "solids": 1,
+   "hole_or_cyl_diameters_mm": [
+    20.0,
+    30.0,
+    40.0
+   ],
+   "min_diameter_mm": 20.0,
+   "face_kinds": {
+    "円筒": 3,
+    "円錐": 2,
+    "平面": 3
+   }
+  },
+  "judgment": {
+   "process": "CNC旋盤",
+   "manufacturability": "快削黄銅製の典型的な回転体形状であり、標準的なCNC旋盤で問題なく製造可能です。",
+   "risk_flags": [
+    "目立った懸念なし"
+   ],
+   "estimate_yen": 8500,
+   "estimate_breakdown": "材料費（φ40mm丸棒からの削り出し分）と、単品試作におけるプログラム・段取り費および加工費を合算した金額です。",
+   "lead_time_days": 6,
+   "comment": "材質・形状ともに加工性が良く、コスト・納期ともに標準的な旋盤加工品として対応可能です。"
+  },
+  "glb": "assets/cad/cad_04_bushing.glb",
+  "step": "assets/cad/cad_04_bushing.step"
+ }
+]

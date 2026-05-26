@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAD解析 ｜ 図面解析 × 3D生成　デモアプリケーション</title>
+  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="stylesheet" href="styles.css?v=22" />
+  <script type="module" src="vendor/model-viewer.min.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="title">製造業向けAIソリューション</span>
+      <span class="tagline">図面解析 × 3D生成　デモアプリケーション</span>
+    </div>
+    <div class="brand-right">
+      <span class="badge">DEMO</span>
+      <img class="brand-logo" src="assets/logo_white.png" alt="LiberCraft" />
+    </div>
+  </header>
+
+  <!-- モード切替（2D図面解析 / CAD解析） -->
+  <nav class="modenav">
+    <a class="mode" href="index.html">2D図面（PDF）解析</a>
+    <a class="mode active" href="cad.html">CAD解析</a>
+    <span class="modehint">CADファイル（STEP）を読み込み、寸法・形状を抽出して製造可否・概算見積をAI判定します</span>
+  </nav>
+
+  <!-- サンプル選択 -->
+  <nav class="samples" id="sampleNav"></nav>
+
+  <main class="stage">
+    <!-- 左：3Dビュー -->
+    <section class="panel model-panel">
+      <div class="panel-head"><span class="dot"></span><span id="cadName">3D ビュー（CADから生成）</span></div>
+      <div class="model-wrap" id="modelWrap">
+        <div class="model-placeholder" id="modelPlaceholder">
+          <div class="ph-icon">⬢</div>
+          <p>サンプルCADを選んで「CADを解析」を押してください</p>
+        </div>
+        <div class="loading" id="loading" hidden>
+          <div class="spinner"></div>
+          <p id="loadingText">CADファイルを読み込んでいます…</p>
+        </div>
+        <model-viewer id="viewer" hidden camera-controls auto-rotate auto-rotate-delay="0"
+          rotation-per-second="22deg" shadow-intensity="1" exposure="1.05"
+          environment-image="neutral" interaction-prompt="none"></model-viewer>
+      </div>
+    </section>
+
+    <!-- 右：抽出データ＋AI判定 -->
+    <section class="panel data-panel">
+      <div class="panel-head"><span class="dot"></span>抽出データ ＆ AI判定</div>
+      <div class="data-wrap" id="dataWrap">
+        <p class="data-empty" id="dataEmpty">「CADを解析」を押すと、CADから取り出した寸法・形状データと、AIによる製造可否・概算見積を表示します。</p>
+        <div id="dataBody" hidden></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="actionbar">
+    <button class="btn btn-step" id="btnAnalyze">⬢ CADを解析</button>
+    <button class="btn btn-ghost" id="btnDownload" disabled>⬇ STEPをダウンロード</button>
+    <span class="hint" id="hint">サンプルCADを選んで「CADを解析」を押してください</span>
+  </footer>
+
+  <script src="cad.js?v=23"></script>
+</body>
+</html>
