@@ -28,10 +28,9 @@ body{
 .brand{display:flex;align-items:baseline;gap:16px;}
 .title{font-size:21px;font-weight:700;letter-spacing:.04em;color:#fff;}
 .tagline{color:#bcd3ee;font-size:13px;}
-.brand-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
-.br-row{display:flex;align-items:center;gap:14px;}
-.brand-logo{height:30px;width:auto;display:block;opacity:.97;}
-.demo-note{font-size:10.5px;color:#a8b6d2;text-align:right;max-width:400px;line-height:1.4;}
+.brand-right{display:flex;flex-direction:row;align-items:center;gap:14px;}
+.brand-logo{height:34px;width:auto;display:block;opacity:.97;}
+.demo-note{font-size:11.5px;color:#a8b6d2;white-space:nowrap;line-height:1.2;}
 .demo-note b{color:#d6e0f2;font-weight:700;}
 .badge{
   font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--navy);
