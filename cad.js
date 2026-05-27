@@ -2,11 +2,24 @@
 const el = (id) => document.getElementById(id);
 const viewer = el("viewer"), cadInput = el("cadInput"), cadThumb = el("cadThumb"), cadFileCard = el("cadFileCard"),
       loading = el("loading"), loadingText = el("loadingText"), dataEmpty = el("dataEmpty"), dataBody = el("dataBody"),
-      cadName = el("cadName"), btnAnalyze = el("btnAnalyze"), btnDownload = el("btnDownload"), hint = el("hint");
+      tabInput = el("tabInput"), tabView = el("tabView"),
+      btnAnalyze = el("btnAnalyze"), btnDownload = el("btnDownload"), hint = el("hint");
 
 let DATA = [], current = null, analyzed = false;
 
-fetch("cad_data.json?v=24").then(r => r.json()).then(d => { DATA = d; buildNav(); selectPart(d[0].id); });
+// 左パネルのタブ切替（入力ファイル ↔ 3Dビュー）。3Dビューは解析後のみ。
+function setLeftTab(name) {
+  if (name === "view" && !analyzed) return;
+  tabInput.classList.toggle("active", name === "input");
+  tabView.classList.toggle("active", name === "view");
+  loading.hidden = true;
+  cadInput.hidden = name !== "input";
+  viewer.hidden = name !== "view";
+}
+tabInput.addEventListener("click", () => setLeftTab("input"));
+tabView.addEventListener("click", () => setLeftTab("view"));
+
+fetch("cad_data.json?v=25").then(r => r.json()).then(d => { DATA = d; buildNav(); selectPart(d[0].id); });
 
 function buildNav() {
   const nav = el("sampleNav");
@@ -27,9 +40,9 @@ function selectPart(id) {
   current = DATA.find(p => p.id === id);
   document.querySelectorAll(".sample-chip").forEach(c => c.classList.toggle("active", c.dataset.id === id));
   analyzed = false;
-  // 解析前：入力CADプレビュー＋ファイル情報
-  loading.hidden = true; viewer.hidden = true; cadInput.hidden = false;
+  // 解析前：入力CADプレビュー＋ファイル情報（3Dビュータブは解析後に有効化）
   cadThumb.src = `assets/cad/thumb_${current.id}.png`;
+  setLeftTab("input");
   cadFileCard.innerHTML = `
     <div class="fc-row"><span class="fc-ic">📄</span><span class="fc-name">${fileName(current)}</span></div>
     <div class="fc-meta">
@@ -40,13 +53,13 @@ function selectPart(id) {
     <div class="fc-note">${current.note || ""}</div>`;
   dataBody.hidden = true; dataEmpty.hidden = false;
   btnDownload.disabled = true;
-  cadName.textContent = "入力CADファイル";
   hint.textContent = `「CADを解析」を押すと ${current.name} を読み込み・解析します`;
 }
 
 btnAnalyze.addEventListener("click", () => {
   if (!current || analyzed) return;
   cadInput.hidden = true; viewer.hidden = true; dataEmpty.hidden = true; dataBody.hidden = true;
+  tabView.classList.add("active"); tabInput.classList.remove("active");
   loading.hidden = false;
   const steps = ["CADファイル（STEP）を読み込んでいます…", "寸法・形状の特徴を抽出しています…", "製造可否・概算見積をAIが判定しています…"];
   let i = 0; loadingText.textContent = steps[0];
@@ -54,13 +67,13 @@ btnAnalyze.addEventListener("click", () => {
   setTimeout(() => {
     clearInterval(tick);
     loading.hidden = true;
-    viewer.src = current.glb; viewer.hidden = false;
-    cadName.textContent = `3D ビュー ｜ ${current.name}`;
+    viewer.src = current.glb;
+    analyzed = true;
+    setLeftTab("view");                 // 解析後は3Dビューを表示（入力ファイルタブで元に戻せる）
     renderData(current);
     dataBody.hidden = false;
     btnDownload.disabled = false;
-    analyzed = true;
-    hint.textContent = `解析完了：CADから寸法・形状を抽出し、AIが製造可否・概算見積を判定しました`;
+    hint.textContent = `解析完了：上のタブで「入力ファイル」と「3Dビュー」を切替できます`;
   }, 2600);
 });
 

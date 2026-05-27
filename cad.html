@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CAD解析 ｜ 図面・CAD解析 × 3D生成 デモ</title>
+  <title>製造業向けAIソリューション デモアプリ</title>
   <link rel="icon" href="assets/favicon.ico" />
-  <link rel="stylesheet" href="styles.css?v=24" />
+  <link rel="stylesheet" href="styles.css?v=25" />
   <script type="module" src="vendor/model-viewer.min.js"></script>
 </head>
 <body>
@@ -31,11 +31,17 @@
   <nav class="samples" id="sampleNav"></nav>
 
   <main class="stage">
-    <!-- 左：3Dビュー -->
+    <!-- 左：入力ファイル / 3Dビュー（タブ切替） -->
     <section class="panel model-panel">
-      <div class="panel-head"><span class="dot"></span><span id="cadName">入力CADファイル</span></div>
+      <div class="panel-head">
+        <span class="dot"></span>
+        <div class="tabs">
+          <button class="tab active" id="tabInput">入力ファイル</button>
+          <button class="tab" id="tabView">3Dビュー</button>
+        </div>
+      </div>
       <div class="model-wrap" id="modelWrap">
-        <!-- 解析前：入力CADのプレビュー＋ファイル情報 -->
+        <!-- 入力CADのプレビュー＋ファイル情報 -->
         <div class="cad-input" id="cadInput">
           <img class="cad-thumb" id="cadThumb" alt="CADプレビュー" />
           <div class="cad-filecard" id="cadFileCard"></div>
@@ -67,6 +73,6 @@
     <span class="hint" id="hint">サンプルCADを選んで「CADを解析」を押してください</span>
   </footer>
 
-  <script src="cad.js?v=24"></script>
+  <script src="cad.js?v=25"></script>
 </body>
 </html>
