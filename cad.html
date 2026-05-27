@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>製造業向けAIソリューション デモアプリ</title>
   <link rel="icon" href="assets/favicon.ico" />
-  <link rel="stylesheet" href="styles.css?v=25" />
+  <link rel="stylesheet" href="styles.css?v=26" />
   <script type="module" src="vendor/model-viewer.min.js"></script>
 </head>
 <body>
@@ -26,6 +26,19 @@
     <a class="mode active" href="cad.html">CAD解析</a>
     <span class="modehint">CADファイル（STEP）を読み込み、寸法・形状を抽出して製造可否・概算見積をAI判定します</span>
   </nav>
+
+  <!-- イントロ説明 -->
+  <section class="intro">
+    <div class="intro-main">
+      <h2>CADファイルから、<span class="hi">製造可否と概算見積</span>をAIが即判定</h2>
+      <p>受け取ったCAD（STEP）を読み込み、寸法・形状を自動抽出。推奨工法・コスト・リスク・リードタイムをその場で提示し、見積や受注可否の一次判断を高速化します。</p>
+    </div>
+    <ol class="intro-steps">
+      <li><b>1</b> サンプルCADを選ぶ</li>
+      <li><b>2</b>「CADを解析」</li>
+      <li><b>3</b> 3Dビューと抽出データ・AI判定を確認</li>
+    </ol>
+  </section>
 
   <!-- サンプル選択 -->
   <nav class="samples" id="sampleNav"></nav>
@@ -73,6 +86,6 @@
     <span class="hint" id="hint">サンプルCADを選んで「CADを解析」を押してください</span>
   </footer>
 
-  <script src="cad.js?v=25"></script>
+  <script src="cad.js?v=26"></script>
 </body>
 </html>

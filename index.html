@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>製造業向けAIソリューション デモアプリ</title>
   <link rel="icon" href="assets/favicon.ico" />
-  <link rel="stylesheet" href="styles.css?v=25" />
+  <link rel="stylesheet" href="styles.css?v=26" />
   <script type="module" src="vendor/model-viewer.min.js"></script>
 </head>
 <body>
@@ -26,6 +26,19 @@
     <a class="mode" href="cad.html">CAD解析</a>
     <span class="modehint">紙・PDFの2D図面をAIが読み取り、寸法・公差を抽出して3D化します</span>
   </nav>
+
+  <!-- イントロ説明 -->
+  <section class="intro">
+    <div class="intro-main">
+      <h2>紙・PDFの図面を、AIが<span class="hi">3Dと数値データ</span>に変換</h2>
+      <p>図面しか無い部品でも、寸法・公差・GD&amp;Tを自動で読み取り、立体イメージまで生成します。図面の確認やデータ化を素早く行えます。</p>
+    </div>
+    <ol class="intro-steps">
+      <li><b>1</b> サンプル図面を選ぶ</li>
+      <li><b>2</b>「①図面を解析」</li>
+      <li><b>3</b>「②3Dモデル生成」「📐寸法を抽出」</li>
+    </ol>
+  </section>
 
   <!-- サンプル選択 -->
   <nav class="samples" id="sampleNav"></nav>
@@ -80,7 +93,7 @@
     <span class="hint" id="hint">「②3Dモデルを生成」または「📐寸法を抽出」を試せます</span>
   </footer>
 
-  <script src="annotations.js?v=25"></script>
-  <script src="app.js?v=25"></script>
+  <script src="annotations.js?v=26"></script>
+  <script src="app.js?v=26"></script>
 </body>
 </html>
