@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CAD解析 ｜ 図面解析 × 3D生成　デモアプリケーション</title>
+  <title>CAD解析 ｜ 図面・CAD解析 × 3D生成 デモ</title>
   <link rel="icon" href="assets/favicon.ico" />
-  <link rel="stylesheet" href="styles.css?v=22" />
+  <link rel="stylesheet" href="styles.css?v=24" />
   <script type="module" src="vendor/model-viewer.min.js"></script>
 </head>
 <body>
   <header class="topbar">
     <div class="brand">
       <span class="title">製造業向けAIソリューション</span>
-      <span class="tagline">図面解析 × 3D生成　デモアプリケーション</span>
+      <span class="tagline">図面・CAD解析 × 3D生成　デモアプリケーション</span>
     </div>
     <div class="brand-right">
       <span class="badge">DEMO</span>
@@ -33,16 +33,18 @@
   <main class="stage">
     <!-- 左：3Dビュー -->
     <section class="panel model-panel">
-      <div class="panel-head"><span class="dot"></span><span id="cadName">3D ビュー（CADから生成）</span></div>
+      <div class="panel-head"><span class="dot"></span><span id="cadName">入力CADファイル</span></div>
       <div class="model-wrap" id="modelWrap">
-        <div class="model-placeholder" id="modelPlaceholder">
-          <div class="ph-icon">⬢</div>
-          <p>サンプルCADを選んで「CADを解析」を押してください</p>
+        <!-- 解析前：入力CADのプレビュー＋ファイル情報 -->
+        <div class="cad-input" id="cadInput">
+          <img class="cad-thumb" id="cadThumb" alt="CADプレビュー" />
+          <div class="cad-filecard" id="cadFileCard"></div>
         </div>
         <div class="loading" id="loading" hidden>
           <div class="spinner"></div>
           <p id="loadingText">CADファイルを読み込んでいます…</p>
         </div>
+        <!-- 解析後：回転できる3Dビュー -->
         <model-viewer id="viewer" hidden camera-controls auto-rotate auto-rotate-delay="0"
           rotation-per-second="22deg" shadow-intensity="1" exposure="1.05"
           environment-image="neutral" interaction-prompt="none"></model-viewer>
@@ -65,6 +67,6 @@
     <span class="hint" id="hint">サンプルCADを選んで「CADを解析」を押してください</span>
   </footer>
 
-  <script src="cad.js?v=23"></script>
+  <script src="cad.js?v=24"></script>
 </body>
 </html>

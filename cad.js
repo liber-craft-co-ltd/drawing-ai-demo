@@ -1,12 +1,12 @@
-// CAD解析ページ — cad_data.json を読み、CAD読込→抽出データ＋AI判定を表示
+// CAD解析ページ — 解析前は「入力CADファイル（プレビュー＋情報）」、解析後に「3Dビュー＋抽出データ＋AI判定」
 const el = (id) => document.getElementById(id);
-const viewer = el("viewer"), placeholder = el("modelPlaceholder"), loading = el("loading"),
-      loadingText = el("loadingText"), dataEmpty = el("dataEmpty"), dataBody = el("dataBody"),
+const viewer = el("viewer"), cadInput = el("cadInput"), cadThumb = el("cadThumb"), cadFileCard = el("cadFileCard"),
+      loading = el("loading"), loadingText = el("loadingText"), dataEmpty = el("dataEmpty"), dataBody = el("dataBody"),
       cadName = el("cadName"), btnAnalyze = el("btnAnalyze"), btnDownload = el("btnDownload"), hint = el("hint");
 
 let DATA = [], current = null, analyzed = false;
 
-fetch("cad_data.json?v=22").then(r => r.json()).then(d => { DATA = d; buildNav(); selectPart(d[0].id); });
+fetch("cad_data.json?v=24").then(r => r.json()).then(d => { DATA = d; buildNav(); selectPart(d[0].id); });
 
 function buildNav() {
   const nav = el("sampleNav");
@@ -14,26 +14,39 @@ function buildNav() {
     const chip = document.createElement("div");
     chip.className = "sample-chip" + (i === 0 ? " active" : "");
     chip.dataset.id = p.id;
-    chip.innerHTML = `<div class="cad-ic">⬢</div><div><div class="nm">${p.name}</div><div class="cls">${p.material}</div></div>`;
+    chip.innerHTML = `<div class="cad-ic">⬢</div><div><div class="nm">${p.name}</div><div class="cls">${p.material}${p.material_assumed ? "（仮定）" : ""}</div></div>`;
     chip.addEventListener("click", () => selectPart(p.id));
     nav.appendChild(chip);
   });
 }
 
+function fileName(p) { return p.step.split("/").pop(); }
+function kb(n) { return n ? Math.round(n / 1024).toLocaleString() + " KB" : "—"; }
+
 function selectPart(id) {
   current = DATA.find(p => p.id === id);
   document.querySelectorAll(".sample-chip").forEach(c => c.classList.toggle("active", c.dataset.id === id));
   analyzed = false;
-  viewer.hidden = true; loading.hidden = true; placeholder.hidden = false;
+  // 解析前：入力CADプレビュー＋ファイル情報
+  loading.hidden = true; viewer.hidden = true; cadInput.hidden = false;
+  cadThumb.src = `assets/cad/thumb_${current.id}.png`;
+  cadFileCard.innerHTML = `
+    <div class="fc-row"><span class="fc-ic">📄</span><span class="fc-name">${fileName(current)}</span></div>
+    <div class="fc-meta">
+      <span>形式：<b>${current.step_format}</b></span>
+      <span>サイズ：<b>${kb(current.step_bytes)}</b></span>
+      <span>材質：<b>${current.material}${current.material_assumed ? "（仮定）" : ""}</b></span>
+    </div>
+    <div class="fc-note">${current.note || ""}</div>`;
   dataBody.hidden = true; dataEmpty.hidden = false;
   btnDownload.disabled = true;
-  cadName.textContent = "3D ビュー（CADから生成）";
-  hint.textContent = `「CADを解析」を押すと ${current.name}（${current.material}）を解析します`;
+  cadName.textContent = "入力CADファイル";
+  hint.textContent = `「CADを解析」を押すと ${current.name} を読み込み・解析します`;
 }
 
 btnAnalyze.addEventListener("click", () => {
   if (!current || analyzed) return;
-  placeholder.hidden = true; viewer.hidden = true; dataEmpty.hidden = true; dataBody.hidden = true;
+  cadInput.hidden = true; viewer.hidden = true; dataEmpty.hidden = true; dataBody.hidden = true;
   loading.hidden = false;
   const steps = ["CADファイル（STEP）を読み込んでいます…", "寸法・形状の特徴を抽出しています…", "製造可否・概算見積をAIが判定しています…"];
   let i = 0; loadingText.textContent = steps[0];
@@ -46,13 +59,14 @@ btnAnalyze.addEventListener("click", () => {
     renderData(current);
     dataBody.hidden = false;
     btnDownload.disabled = false;
-    hint.textContent = `解析完了：寸法・形状を抽出し、AIが製造可否・概算見積を判定しました`;
+    analyzed = true;
+    hint.textContent = `解析完了：CADから寸法・形状を抽出し、AIが製造可否・概算見積を判定しました`;
   }, 2600);
 });
 
 btnDownload.addEventListener("click", () => {
   if (!current) return;
-  const a = document.createElement("a"); a.href = current.step; a.download = `${current.name}.step`;
+  const a = document.createElement("a"); a.href = current.step; a.download = fileName(current);
   document.body.appendChild(a); a.click(); a.remove();
 });
 
@@ -63,7 +77,7 @@ function renderData(p) {
   const rows = [
     ["外形寸法 (W×D×H)", `${m.bbox_mm[0]} × ${m.bbox_mm[1]} × ${m.bbox_mm[2]} mm`],
     ["体積", `${m.volume_cm3} cm³`],
-    ["質量（概算）", `${m.mass_g} g（${p.material}・比重${m.density_g_cm3}）`],
+    ["質量（概算）", `${m.mass_g.toLocaleString()} g（${p.material}${p.material_assumed ? "・仮定" : ""}・比重${m.density_g_cm3}）`],
     ["表面積", `${m.surface_area_cm2} cm²`],
     ["穴・円筒の径", dia],
     ["最小径", m.min_diameter_mm ? `φ${m.min_diameter_mm}` : "—"],
@@ -89,6 +103,5 @@ function renderData(p) {
       </div>
       <p class="disc">※ 見積・リードタイムはデモ用のAI概算です。実見積とは異なります。</p>
     </div>`;
-  // フェードイン
   dataBody.querySelectorAll(".d-sec, .jcard").forEach((e, i) => { e.style.opacity = 0; setTimeout(() => { e.style.transition = ".25s"; e.style.opacity = 1; }, 80 * i + 60); });
 }

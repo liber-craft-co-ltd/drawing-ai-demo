@@ -3,7 +3,10 @@
   "id": "cad_01_bracket",
   "name": "取付ブラケット",
   "material": "AL6061-T6",
-  "note": "切削（角物）",
+  "material_assumed": false,
+  "step_format": "STEP AP214",
+  "step_bytes": 100781,
+  "note": "自社作成（切削・角物）",
   "metrics": {
    "bbox_mm": [
     120.0,
@@ -33,14 +36,14 @@
   },
   "judgment": {
    "process": "3軸CNC切削",
-   "manufacturability": "標準的な3軸CNC切削加工で問題なく製造可能です。",
+   "manufacturability": "標準的な3軸CNC切削で問題なく製造可能と判断します。",
    "risk_flags": [
     "目立った懸念なし"
    ],
-   "estimate_yen": 28000,
-   "estimate_breakdown": "材料費(約0.7kgのAL6061材)と、プログラム・段取り・機械加工時間(合計約3.5時間)を基に算出しています。",
-   "lead_time_days": 8,
-   "comment": "材質・形状ともに標準的で、切削加工における特筆すべき課題は見当たらない部品です。"
+   "estimate_yen": 38000,
+   "estimate_breakdown": "材料費は外形寸法から算出したブロック材の費用、加工費は2〜3工程の段取り・プログラミング・切削加工時間を想定して算出しています。",
+   "lead_time_days": 7,
+   "comment": "材質・形状ともに標準的であり、一般的なマシニングセンタで安定して加工できる部品です。"
   },
   "glb": "assets/cad/cad_01_bracket.glb",
   "step": "assets/cad/cad_01_bracket.step"
@@ -49,7 +52,10 @@
   "id": "cad_02_flange",
   "name": "フランジ",
   "material": "S45C",
-  "note": "旋盤＋穴あけ（回転体）",
+  "material_assumed": false,
+  "step_format": "STEP AP214",
+  "step_bytes": 37302,
+  "note": "自社作成（旋盤・回転体）",
   "metrics": {
    "bbox_mm": [
     150.0,
@@ -77,104 +83,212 @@
    }
   },
   "judgment": {
-   "process": "旋盤 + マシニングセンタ",
-   "manufacturability": "標準的な旋盤およびマシニングセンタで問題なく製造可能です。",
+   "process": "CNC旋盤加工",
+   "manufacturability": "材質・形状ともに標準的であり、一般的なCNC旋盤で問題なく製造可能です。",
    "risk_flags": [
     "目立った懸念なし"
    ],
-   "estimate_yen": 28500,
-   "estimate_breakdown": "材料費（約2.3kgのS45C丸棒）に、旋盤およびマシニングセンタでの段取り・加工費（約3時間分）を加算して算出しています。",
+   "estimate_yen": 25000,
+   "estimate_breakdown": "材料費は製品重量約2.3kgに対し、切削代を考慮した素材重量から算出。加工費はCNC旋盤での段取り・プログラミング・加工工数を基に見積もっています。",
    "lead_time_days": 7,
-   "comment": "S45Cの典型的なフランジ形状であり、寸法精度や面粗度の要求が標準的であれば安定した品質で製作可能です。"
+   "comment": "円筒と平面のみで構成されており、旋盤加工の典型的なフランジ形状部品です。"
   },
   "glb": "assets/cad/cad_02_flange.glb",
   "step": "assets/cad/cad_02_flange.step"
  },
  {
-  "id": "cad_03_l_bracket",
-  "name": "Lアングルブラケット",
-  "material": "SS400",
-  "note": "板金/溶接または切削",
+  "id": "cad_05_nist_ctc01",
+  "name": "NIST CTC-01（試験部品）",
+  "material": "AL6061-T6",
+  "material_assumed": true,
+  "step_format": "STEP AP203",
+  "step_bytes": 235171,
+  "note": "NIST公開モデル（MBE PMI試験用・パブリックドメイン）／材質はCADに無いため仮定",
   "metrics": {
    "bbox_mm": [
-    80.0,
-    60.0,
-    64.0
+    1170.0,
+    650.0,
+    150.0
    ],
-   "volume_cm3": 73.2,
-   "surface_area_cm2": 218.9,
-   "mass_g": 574.8,
-   "density_g_cm3": 7.85,
-   "material_price_yen_kg": 150,
-   "faces": 10,
-   "edges": 24,
+   "volume_cm3": 14642.8,
+   "surface_area_cm2": 8079.7,
+   "mass_g": 39535.6,
+   "density_g_cm3": 2.7,
+   "material_price_yen_kg": 800,
+   "faces": 139,
+   "edges": 466,
    "solids": 1,
    "hole_or_cyl_diameters_mm": [
-    9.0
+    1.2,
+    1.6,
+    3.3,
+    4.2,
+    9.8,
+    10.0,
+    10.6,
+    12.6,
+    13.6,
+    13.7,
+    20.0,
+    25.0,
+    35.0,
+    40.0,
+    50.0,
+    100.0
    ],
-   "min_diameter_mm": 9.0,
+   "min_diameter_mm": 1.2,
    "face_kinds": {
-    "平面": 8,
-    "円筒": 2
+    "平面": 80,
+    "円筒": 57,
+    "円錐": 2
    }
   },
   "judgment": {
-   "process": "3軸CNC切削",
-   "manufacturability": "標準的な3軸CNC切削加工機で問題なく製造可能です。",
+   "process": "大型5軸CNC切削",
+   "manufacturability": "大型加工機を保有する工場であれば製造可能ですが、部品サイズと微細な穴径の混在により加工難易度は高いです。",
    "risk_flags": [
-    "φ9穴の深さによっては深穴加工となる可能性"
+    "大型部品 (1m超)",
+    "φ1.2の微細穴",
+    "高い材料除去率"
    ],
-   "estimate_yen": 22000,
-   "estimate_breakdown": "材料費は外接直方体サイズのSS400鋼材から算出し、加工費は単品試作を想定したプログラム・段取り・切削時間を含んでいます。",
-   "lead_time_days": 7,
-   "comment": "材質・形状ともに一般的で、特殊な工具や工程を必要としない標準的な切削加工品です。"
+   "estimate_yen": 1350000,
+   "estimate_breakdown": "材料費は外接サイズ(1170x650x150mm)のアルミブロックから算出。加工費は大型マシニングセンタでの長時間加工（段取り、荒加工、仕上げ、多数の穴あけ）を想定しています。",
+   "lead_time_days": 25,
+   "comment": "1mを超える大型のプレート加工ですが、微細な穴も含まれるため、設備と加工ノウハウの両方が求められる部品です。"
   },
-  "glb": "assets/cad/cad_03_l_bracket.glb",
-  "step": "assets/cad/cad_03_l_bracket.step"
+  "glb": "assets/cad/cad_05_nist_ctc01.glb",
+  "step": "assets/cad/cad_05_nist_ctc01.step"
  },
  {
-  "id": "cad_04_bushing",
-  "name": "ブッシュ",
-  "material": "C3604（快削黄銅）",
-  "note": "旋盤（回転体）",
+  "id": "cad_06_nist_ftc06",
+  "name": "NIST FTC-06（試験部品）",
+  "material": "S45C",
+  "material_assumed": true,
+  "step_format": "STEP AP203",
+  "step_bytes": 222799,
+  "note": "NIST公開モデル（MBE PMI試験用・パブリックドメイン）／材質はCADに無いため仮定",
   "metrics": {
    "bbox_mm": [
-    40.0,
-    40.0,
-    50.0
+    304.8,
+    106.7,
+    247.7
    ],
-   "volume_cm3": 36.0,
-   "surface_area_cm2": 105.7,
-   "mass_g": 306.3,
-   "density_g_cm3": 8.5,
-   "material_price_yen_kg": 1500,
-   "faces": 8,
-   "edges": 13,
+   "volume_cm3": 3323.5,
+   "surface_area_cm2": 2834.2,
+   "mass_g": 26089.8,
+   "density_g_cm3": 7.85,
+   "material_price_yen_kg": 200,
+   "faces": 144,
+   "edges": 446,
    "solids": 1,
    "hole_or_cyl_diameters_mm": [
-    20.0,
-    30.0,
-    40.0
+    0.8,
+    1.1,
+    2.2,
+    2.8,
+    6.3,
+    6.5,
+    7.0,
+    7.1,
+    8.4,
+    9.1,
+    10.2,
+    10.5,
+    14.3,
+    15.9,
+    20.6,
+    22.9,
+    25.4,
+    31.8,
+    44.4
    ],
-   "min_diameter_mm": 20.0,
+   "min_diameter_mm": 0.8,
    "face_kinds": {
-    "円筒": 3,
-    "円錐": 2,
-    "平面": 3
+    "平面": 71,
+    "円筒": 58,
+    "円錐": 4,
+    "球": 5,
+    "トーラス": 6
    }
   },
   "judgment": {
-   "process": "CNC旋盤",
-   "manufacturability": "快削黄銅製の典型的な回転体形状であり、標準的なCNC旋盤で問題なく製造可能です。",
+   "process": "5軸CNC切削",
+   "manufacturability": "5軸マシニングセンタによる製造は可能ですが、微細穴や多様な曲面を含むため加工難易度は非常に高いです。",
    "risk_flags": [
-    "目立った懸念なし"
+    "大型部品 (約305x107x248mm)",
+    "φ0.8の微細穴",
+    "複雑形状（多面・曲面）"
    ],
-   "estimate_yen": 8500,
-   "estimate_breakdown": "材料費（φ40mm丸棒からの削り出し分）と、単品試作におけるプログラム・段取り費および加工費を合算した金額です。",
-   "lead_time_days": 6,
-   "comment": "材質・形状ともに加工性が良く、コスト・納期ともに標準的な旋盤加工品として対応可能です。"
+   "estimate_yen": 420000,
+   "estimate_breakdown": "材料費（約2.7万円）に、大型・複雑形状のため長時間となる5軸加工費、プログラム作成費、特殊工具費を加算した金額です。",
+   "lead_time_days": 15,
+   "comment": "大型かつ多様な曲面や微細穴を含む、5軸加工のスキルが試される典型的な高難易度切削加工品です。"
   },
-  "glb": "assets/cad/cad_04_bushing.glb",
-  "step": "assets/cad/cad_04_bushing.step"
+  "glb": "assets/cad/cad_06_nist_ftc06.glb",
+  "step": "assets/cad/cad_06_nist_ftc06.step"
+ },
+ {
+  "id": "cad_07_nist_ftc09",
+  "name": "NIST FTC-09（薄板部品）",
+  "material": "SS400",
+  "material_assumed": true,
+  "step_format": "STEP AP203",
+  "step_bytes": 263916,
+  "note": "NIST公開モデル（MBE PMI試験用・パブリックドメイン）／材質はCADに無いため仮定",
+  "metrics": {
+   "bbox_mm": [
+    190.5,
+    3.0,
+    279.4
+   ],
+   "volume_cm3": 136.4,
+   "surface_area_cm2": 966.1,
+   "mass_g": 1071.1,
+   "density_g_cm3": 7.85,
+   "material_price_yen_kg": 150,
+   "faces": 158,
+   "edges": 495,
+   "solids": 1,
+   "hole_or_cyl_diameters_mm": [
+    0.8,
+    1.1,
+    2.2,
+    2.8,
+    3.6,
+    4.0,
+    5.6,
+    5.9,
+    6.3,
+    6.5,
+    7.0,
+    7.1,
+    8.0,
+    8.4,
+    9.1,
+    9.5,
+    12.7,
+    19.0
+   ],
+   "min_diameter_mm": 0.8,
+   "face_kinds": {
+    "平面": 62,
+    "円筒": 88,
+    "円錐": 8
+   }
+  },
+  "judgment": {
+   "process": "レーザーカット + 3軸CNC切削",
+   "manufacturability": "最小径0.8mmの穴加工に注意を要しますが、レーザーカットとマシニング加工の組み合わせで製造可能です。",
+   "risk_flags": [
+    "φ0.8の小径穴",
+    "多数の穴加工"
+   ],
+   "estimate_yen": 28000,
+   "estimate_breakdown": "材料費はSS400 t3.0の板材費で、加工費はレーザーカットと多数の穴・皿穴を追加工するマシニングのプログラム・段取り・加工時間から算出しています。",
+   "lead_time_days": 7,
+   "comment": "多数の小径穴を持つ薄板部品であり、レーザー加工とマシニング加工の複合工程での対応が適切です。"
+  },
+  "glb": "assets/cad/cad_07_nist_ftc09.glb",
+  "step": "assets/cad/cad_07_nist_ftc09.step"
  }
 ]
