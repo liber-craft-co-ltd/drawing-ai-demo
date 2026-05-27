@@ -19,7 +19,7 @@ function setLeftTab(name) {
 tabInput.addEventListener("click", () => setLeftTab("input"));
 tabView.addEventListener("click", () => setLeftTab("view"));
 
-fetch("cad_data.json?v=25").then(r => r.json()).then(d => { DATA = d; buildNav(); selectPart(d[0].id); });
+fetch("cad_data.json?v=27").then(r => r.json()).then(d => { DATA = d; buildNav(); selectPart(d[0].id); });
 
 function buildNav() {
   const nav = el("sampleNav");
